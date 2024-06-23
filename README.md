@@ -44,7 +44,6 @@ subjectAltName = @alt_names
 IP.1 = {IP.SERVER}  # IP-адрес вашего сервера
 
 
-
 # Генерация приватного ключа
 openssl genpkey -algorithm RSA -out server_key.pem
 
