@@ -28,7 +28,7 @@
                                                                                         
 
 № Создайте файл openssl.cnf с таким содержимым:
-
+<code>
 [ req ]
 distinguished_name = req_distinguished_name
 x509_extensions = v3_req
@@ -42,7 +42,7 @@ subjectAltName = @alt_names
 
 [ alt_names ]
 IP.1 = {IP.SERVER}  # IP-адрес вашего сервера
-
+</code>
 
 # Генерация приватного ключа
 openssl genpkey -algorithm RSA -out server_key.pem
