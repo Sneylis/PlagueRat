@@ -21,10 +21,10 @@ def main():
 
     # Создание сокета
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('0.0.0.0', 12345))
+    server_socket.bind(('0.0.0.0', 8443))
     server_socket.listen(5)
 
-    print('Сервер слушает на порту 12345...')
+    print('Сервер слушает...')
 
     while True:
         client_socket, addr = server_socket.accept()

@@ -1,4 +1,5 @@
 # PlagueRAT 
+<p>Данный скрипт использует pywin32 для создания процееса который подключаеться с SSL до сервера злоумышленника работая как обычный RAT.</p>
 
                                                       =-.                              
                                  :-:                   .++-=-                             
@@ -27,8 +28,14 @@
                                .:    ::.                                                  
                                                                                         
 
-№ Создайте файл openssl.cnf с таким содержимым:
+# Установка библиотек
+
+<code>pip install pywin32 tempfile </code>
+
+# Создайте файл openssl.cnf с таким содержимым:
+
 <code>
+
 [ req ]
 distinguished_name = req_distinguished_name
 x509_extensions = v3_req
@@ -56,4 +63,9 @@ openssl x509 -req -days 365 -in server_csr.pem -signkey server_key.pem -out serv
 # конфигурация
 заменить IP в скриптах serve.py и client.py
 
-# ДАННЫЙ СКРИПТ ЯВЛЯЕТЬСЯ УЧЕБНОЙ РАЗРАБОТКОЙ, ИСПОЛЬЗОВАНИЕ ДАННОГО СКРИПТА В НЕПРАВОМЕРНЫХ ЦЕЛЯХ ВАША ОТВЕСТВННОСТЬ
+# запуск
+
+<code>python client.py install</code>
+<code>python client.py start</code>
+
+<b> P.S. ДАННЫЙ СКРИПТ ЯВЛЯЕТЬСЯ УЧЕБНОЙ РАЗРАБОТКОЙ, ИСПОЛЬЗОВАНИЕ ДАННОГО СКРИПТА В НЕПРАВОМЕРНЫХ ЦЕЛЯХ - ВАША ОТВЕСТВННОСТЬ </b>
