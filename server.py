@@ -1,7 +1,7 @@
 import socket
 import ssl
 import subprocess
-
+import sys
 
 def handle_client(client_socket):
     while True:
@@ -14,14 +14,14 @@ def handle_client(client_socket):
     client_socket.close()
 
 
-def main():
+def main(port):
     # Создание SSL контекста
     context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
     context.load_cert_chain(certfile='server_cert.pem', keyfile='server_key.pem')
 
     # Создание сокета
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('0.0.0.0', 8443))
+    server_socket.bind(('0.0.0.0', port))
     server_socket.listen(5)
 
     print('Сервер слушает...')
@@ -47,4 +47,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    port = sys.argv[1]
+    main(port)
